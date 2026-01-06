@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover local businesses in East Tennessee. Support women-owned, veteran-owned, and new businesses in our community.">
+    <title>Rocky Top Business Directory | Discover Local</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Skip Link for A11y -->
+    <a href="#main-content" class="visually-hidden">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo" aria-label="Rocky Top Directory - Home">
+                    <div class="logo-icon" aria-hidden="true">RT</div>
+                    <span class="logo-text">Rocky Top Directory</span>
+                </a>
+                
+                <div class="header-actions">
+                    <button type="button" class="btn btn-ghost" aria-label="Saved listings">
+                        <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="claim-btn" aria-label="Claim Listing">
+                        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                        <span>Claim Listing</span>
+                    </button>
+                    <button type="button" class="btn btn-primary" aria-label="Add Business">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        <span>Add Business</span>
+                    </button>
+                    <button type="button" class="btn menu-icon" aria-label="Open menu" onclick="toggleMobileMenu()">
+                        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="hero-title" class="hero-title animate-in">
+                    Discover <span>Local Businesses</span> in East Tennessee
+                </h1>
+                <p class="hero-subtitle animate-in animate-delay-1">
+                    Support your neighbors. Find trusted local services. Build community.
+                </p>
+                
+                <div class="search-container animate-in animate-delay-2">
+                    <form class="search-form" role="search" aria-label="Search businesses">
+                        <div class="search-input-wrapper">
+                            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input 
+                                type="search" 
+                                class="search-input" 
+                                id="search-input"
+                                placeholder="Search businesses, services, or categories..."
+                                aria-label="Search businesses"
+                                autocomplete="off"
+                            >
+                        </div>
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>
+                </div>
+
+                <div class="quick-stats animate-in animate-delay-3">
+                    <div class="stat">
+                        <div class="stat-number">247</div>
+                        <div class="stat-label">Local Businesses</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">18</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">42</div>
+                        <div class="stat-label">New This Month</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filter-section" aria-label="Filter businesses">
+        <div class="container">
+            <div class="filter-bar">
+                <div class="filter-row">
+                    <span class="filter-label">Highlight:</span>
+                    <button 
+                        type="button" 
+                        class="filter-pill filter-pill--new" 
+                        role="switch" 
+                        aria-pressed="false"
+                        data-filter="new"
+                    >
+                        <i class="fa-regular fa-star" aria-hidden="true"></i>
+                        New This Month
+                    </button>
+                    <button 
+                        type="button" 
+                        class="filter-pill filter-pill--women" 
+                        role="switch" 
+                        aria-pressed="false"
+                        data-filter="women"
+                    >
+                        Women-Owned
+                    </button>
+                    <button 
+                        type="button" 
+                        class="filter-pill filter-pill--veteran" 
+                        role="switch" 
+                        aria-pressed="false"
+                        data-filter="veteran"
+                    >
+                        Veteran-Owned
+                    </button>
+                    
+                    <span class="filter-divider" aria-hidden="true"></span>
+
+                    <label for="category-select" class="filter-label">Category:</label>
+                    <select id="category-select" class="category-select">
+                        <option value="">All Categories</option>
+                        <option value="automotive">Automotive</option>
+                        <option value="construction">Construction & Trades</option>
+                        <option value="food">Food & Dining</option>
+                        <option value="health">Health & Wellness</option>
+                        <option value="home">Home Services</option>
+                        <option value="professional">Professional Services</option>
+                        <option value="retail">Retail & Shopping</option>
+                        <option value="technology">Technology</option>
+                    </select>
+                </div>
+
+                <div class="results-meta">
+                    <span class="results-count" id="results-count">6</span> businesses found
+                </div>
+            </div>
+
+            <div class="active-filters" id="active-filters" aria-label="Active filters" hidden>
+                <!-- Active filter tags inserted here by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content">
+        <div class="container">
+            <div class="content-layout">
+                <!-- Sidebar -->
+                <aside class="sidebar" aria-label="Browse categories">
+                    <div class="sidebar-section">
+                        <h2 class="sidebar-title">Categories</h2>
+                        <nav class="category-list" aria-label="Business categories">
+                            <button class="category-item active" data-category="">
+                                <span><i class="fa-solid fa-location-dot category-icon" aria-hidden="true"></i>All Businesses</span>
+                                <span class="category-count">247</span>
+                            </button>
+                            <button class="category-item" data-category="automotive">
+                                <span><i class="fa-solid fa-car category-icon" aria-hidden="true"></i>Automotive</span>
+                                <span class="category-count">18</span>
+                            </button>
+                            <button class="category-item" data-category="construction">
+                                <span><i class="fa-solid fa-hammer category-icon" aria-hidden="true"></i>Construction & Trades</span>
+                                <span class="category-count">34</span>
+                            </button>
+                            <button class="category-item" data-category="food">
+                                <span><i class="fa-solid fa-utensils category-icon" aria-hidden="true"></i>Food & Dining</span>
+                                <span class="category-count">52</span>
+                            </button>
+                            <button class="category-item" data-category="health">
+                                <span><i class="fa-solid fa-heart-pulse category-icon" aria-hidden="true"></i>Health & Wellness</span>
+                                <span class="category-count">28</span>
+                            </button>
+                            <button class="category-item" data-category="home">
+                                <span><i class="fa-solid fa-house category-icon" aria-hidden="true"></i>Home Services</span>
+                                <span class="category-count">41</span>
+                            </button>
+                            <button class="category-item" data-category="professional">
+                                <span><i class="fa-solid fa-briefcase category-icon" aria-hidden="true"></i>Professional Services</span>
+                                <span class="category-count">36</span>
+                            </button>
+                            <button class="category-item" data-category="retail">
+                                <span><i class="fa-solid fa-bag-shopping category-icon" aria-hidden="true"></i>Retail & Shopping</span>
+                                <span class="category-count">24</span>
+                            </button>
+                            <button class="category-item" data-category="technology">
+                                <span><i class="fa-solid fa-laptop-code category-icon" aria-hidden="true"></i>Technology</span>
+                                <span class="category-count">14</span>
+                            </button>
+                        </nav>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h2 class="sidebar-title">Popular Tags</h2>
+                        <div class="tags-cloud">
+                            <button class="tag" data-tag="24-hour">24 Hour</button>
+                            <button class="tag" data-tag="accepts-cards">Accepts Cards</button>
+                            <button class="tag" data-tag="delivery">Delivery</button>
+                            <button class="tag" data-tag="family-owned">Family Owned</button>
+                            <button class="tag" data-tag="free-estimates">Free Estimates</button>
+                            <button class="tag" data-tag="locally-sourced">Locally Sourced</button>
+                            <button class="tag" data-tag="same-day">Same Day</button>
+                            <button class="tag" data-tag="senior-discount">Senior Discount</button>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Listings -->
+                <div class="listings-area">
+                    <section class="featured-section" aria-labelledby="featured-title">
+                        <div class="section-header">
+                            <h2 id="featured-title" class="section-title">Featured Businesses</h2>
+                            <a href="#" class="section-link">
+                                View all
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- Business Grid -->
+                    <div class="listings-grid" id="listings-grid" role="list" aria-label="Business listings">
+                        
+                        <!-- Card 1 - Featured, Women-Owned -->
+                        <article class="business-card" role="listitem" data-category="professional" data-tags="women,featured">
+                            <div class="card-image">
+                                <div class="card-badges">
+                                    <span class="badge badge--featured">Featured</span>
+                                    <span class="badge badge--women">Women-Owned</span>
+                                </div>
+                                <button type="button" class="card-favorite" aria-label="Save to favorites" aria-pressed="false">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-category">Professional Services</span>
+                                <h3 class="card-title">Ridgetop Accounting & Tax</h3>
+                                <p class="card-description">Full-service accounting firm specializing in small business bookkeeping, tax preparation, and financial consulting.</p>
+                                <div class="card-tags">
+                                    <span class="card-tag">Tax Prep</span>
+                                    <span class="card-tag">Bookkeeping</span>
+                                    <span class="card-tag">Payroll</span>
+                                </div>
+                                <div class="card-meta">
+                                    <span class="meta-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                        Oak Ridge
+                                    </span>
+                                    <span class="meta-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                        </svg>
+                                        (865) 555-0123
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button type="button" class="btn btn-secondary contact-btn" data-business="Ridgetop Accounting & Tax">Contact</button>
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </article>
+
+                        <!-- Card 2 - Veteran-Owned -->
+                        <article class="business-card" role="listitem" data-category="construction" data-tags="veteran,free-estimates">
+                            <div class="card-image">
+                                <div class="card-badges">
+                                    <span class="badge badge--veteran">Veteran-Owned</span>
+                                </div>
+                                <button type="button" class="card-favorite" aria-label="Save to favorites" aria-pressed="false">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-category">Construction & Trades</span>
+                                <h3 class="card-title">Anderson County Roofing</h3>
+                                <p class="card-description">Residential and commercial roofing services. Free inspections, storm damage repair, and full roof replacements.</p>
+                                <div class="card-tags">
+                                    <span class="card-tag">Free Estimates</span>
+                                    <span class="card-tag">Licensed</span>
+                                    <span class="card-tag">Insured</span>
+                                </div>
+                                <div class="card-meta">
+                                    <span class="meta-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                        Clinton
+                                    </span>
+                                    <span class="meta-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                        </svg>
+                                        (865) 555-0234
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button type="button" class="btn btn-secondary contact-btn" data-business="Anderson County Roofing">Contact</button>
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </article>
+
+                        <!-- Card 3 - New This Month -->
+                        <article class="business-card" role="listitem" data-category="food" data-tags="new,family-owned">
+                            <div class="card-image">
+                                <div class="card-badges">
+                                    <span class="badge badge--new">New</span>
+                                </div>
+                                <button type="button" class="card-favorite" aria-label="Save to favorites" aria-pressed="false">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-category">Food & Dining</span>
+                                <h3 class="card-title">Smoky Mountain Bakehouse</h3>
+                                <p class="card-description">Artisan breads, pastries, and custom cakes made fresh daily. Wedding cakes a specialty.</p>
+                                <div class="card-tags">
+                                    <span class="card-tag">Bakery</span>
+                                    <span class="card-tag">Custom Cakes</span>
+                                    <span class="card-tag">Local Ingredients</span>
+                                </div>
+                                <div class="card-meta">
+                                    <span class="meta-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                        Rocky Top
+                                    </span>
+                                    <span class="meta-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                        </svg>
+                                        (865) 555-0345
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button type="button" class="btn btn-secondary contact-btn" data-business="Smoky Mountain Bakehouse">Contact</button>
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </article>
+
+                        <!-- Card 4 - Women + Veteran -->
+                        <article class="business-card" role="listitem" data-category="health" data-tags="women,veteran">
+                            <div class="card-image">
+                                <div class="card-badges">
+                                    <span class="badge badge--women">Women-Owned</span>
+                                    <span class="badge badge--veteran">Veteran-Owned</span>
+                                </div>
+                                <button type="button" class="card-favorite" aria-label="Save to favorites" aria-pressed="false">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-category">Health & Wellness</span>
+                                <h3 class="card-title">Mountain Strong Physical Therapy</h3>
+                                <p class="card-description">Outpatient physical therapy and sports rehabilitation. Specialized in post-surgical recovery and chronic pain management.</p>
+                                <div class="card-tags">
+                                    <span class="card-tag">PT</span>
+                                    <span class="card-tag">Sports Rehab</span>
+                                    <span class="card-tag">Accepts Insurance</span>
+                                </div>
+                                <div class="card-meta">
+                                    <span class="meta-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                        Oak Ridge
+                                    </span>
+                                    <span class="meta-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                        </svg>
+                                        (865) 555-0456
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button type="button" class="btn btn-secondary contact-btn" data-business="Mountain Strong Physical Therapy">Contact</button>
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </article>
+
+                        <!-- Card 5 - HC Web Labs -->
+                        <article class="business-card" role="listitem" data-category="technology" data-tags="new,women">
+                            <div class="card-image">
+                                <div class="card-badges">
+                                    <span class="badge badge--new">New</span>
+                                    <span class="badge badge--women">Women-Owned</span>
+                                </div>
+                                <button type="button" class="card-favorite" aria-label="Save to favorites" aria-pressed="false">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-category">Technology</span>
+                                <h3 class="card-title">HC Web Labs</h3>
+                                <p class="card-description">Hand-coded websites for small businesses, nonprofits, and entrepreneurs. Mobile-first, accessible, and built to perform.</p>
+                                <div class="card-tags">
+                                    <span class="card-tag">Web Design</span>
+                                    <span class="card-tag">Development</span>
+                                    <span class="card-tag">SEO</span>
+                                </div>
+                                <div class="card-meta">
+                                    <span class="meta-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                        Anderson County
+                                    </span>
+                                    <span class="meta-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                            <path d="M7 15h0M2 9h20"></path>
+                                        </svg>
+                                        hcweblabs.com
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button type="button" class="btn btn-secondary contact-btn" data-business="HC Web Labs">Contact</button>
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </article>
+
+                        <!-- Card 6 - Home Services -->
+                        <article class="business-card" role="listitem" data-category="home" data-tags="24-hour,free-estimates">
+                            <div class="card-image">
+                                <button type="button" class="card-favorite" aria-label="Save to favorites" aria-pressed="false">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-category">Home Services</span>
+                                <h3 class="card-title">Valley HVAC Solutions</h3>
+                                <p class="card-description">Heating, cooling, and indoor air quality. 24/7 emergency service. Free estimates on system replacements.</p>
+                                <div class="card-tags">
+                                    <span class="card-tag">24 Hour</span>
+                                    <span class="card-tag">Free Estimates</span>
+                                    <span class="card-tag">Financing</span>
+                                </div>
+                                <div class="card-meta">
+                                    <span class="meta-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                        Norris
+                                    </span>
+                                    <span class="meta-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                        </svg>
+                                        (865) 555-0567
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button type="button" class="btn btn-secondary contact-btn" data-business="Valley HVAC Solutions">Contact</button>
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- No Results State -->
+                    <div class="no-results" id="no-results" hidden>
+                        <div class="no-results-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                        <h3 class="no-results-title">No businesses found</h3>
+                        <p class="no-results-text">Try adjusting your filters or search terms</p>
+                        <button type="button" class="btn btn-primary" id="clear-filters-btn">Clear All Filters</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="contact-modal-title">Contact <span id="contact-business-name">Business</span></h2>
+                <button type="button" class="modal-close" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <form id="contact-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="contact-name" class="form-label">Your Name *</label>
+                        <input type="text" id="contact-name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email" class="form-label">Email Address *</label>
+                        <input type="email" id="contact-email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="contact-phone" class="form-input" placeholder="(555) 555-5555">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-subject" class="form-label">Subject *</label>
+                        <select id="contact-subject" class="form-select" required>
+                            <option value="">Select a topic...</option>
+                            <option value="quote">Request a Quote</option>
+                            <option value="info">General Information</option>
+                            <option value="appointment">Schedule Appointment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message" class="form-label">Message *</label>
+                        <textarea id="contact-message" class="form-textarea" placeholder="How can they help you?" required></textarea>
+                    </div>
+                    <p class="form-hint">* Required fields. Your message will be sent directly to the business.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="contact-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </div>
+            </form>
+
+            <!-- Success State -->
+            <div class="success-message" id="contact-success" hidden>
+                <div class="success-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <h3 class="success-title">Message Sent!</h3>
+                <p class="success-text">The business will receive your inquiry and respond directly to your email.</p>
+                <button type="button" class="btn btn-primary" id="contact-done">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Claim Listing Modal -->
+    <div class="modal-overlay" id="claim-modal" role="dialog" aria-modal="true" aria-labelledby="claim-modal-title">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="claim-modal-title">Claim Your Business</h2>
+                <button type="button" class="modal-close" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Progress Steps -->
+                <div class="claim-steps" role="list" aria-label="Claim progress">
+                    <div class="claim-step active" role="listitem">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Find Business</div>
+                    </div>
+                    <div class="claim-step" role="listitem">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Verify</div>
+                    </div>
+                    <div class="claim-step" role="listitem">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Complete</div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Search -->
+                <div id="claim-step-1">
+                    <div class="form-group">
+                        <label for="claim-search" class="form-label">Search for your business</label>
+                        <input type="search" id="claim-search" class="form-input" placeholder="Enter business name...">
+                    </div>
+                    <div id="claim-results">
+                        <p class="claim-hint">Start typing to search for your business listing.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2: Verify -->
+                <div id="claim-step-2" hidden>
+                    <p class="claim-verify-intro">Choose how you'd like to verify ownership of <strong id="claim-selected-business">Business Name</strong>:</p>
+                    
+                    <div class="verification-options">
+                        <label class="verification-option">
+                            <input type="radio" name="verify-method" value="phone">
+                            <div class="option-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <div class="option-content">
+                                <div class="option-title">Phone Verification</div>
+                                <div class="option-desc">We'll call your listed number with a code</div>
+                            </div>
+                        </label>
+                        
+                        <label class="verification-option">
+                            <input type="radio" name="verify-method" value="email">
+                            <div class="option-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="option-content">
+                                <div class="option-title">Email Verification</div>
+                                <div class="option-desc">We'll send a link to your business email</div>
+                            </div>
+                        </label>
+                        
+                        <label class="verification-option">
+                            <input type="radio" name="verify-method" value="document">
+                            <div class="option-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                </svg>
+                            </div>
+                            <div class="option-content">
+                                <div class="option-title">Document Upload</div>
+                                <div class="option-desc">Upload business license or utility bill</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Step 3: Success -->
+                <div id="claim-step-3" hidden>
+                    <div class="success-message success-message--inline">
+                        <div class="success-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="success-title">Verification Pending</h3>
+                        <p class="success-text">We've started the verification process. You'll receive confirmation within 24-48 hours.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="claim-back" hidden>Back</button>
+                <button type="button" class="btn btn-primary" id="claim-next" disabled>Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button type="button" class="scroll-top-btn" id="scroll-top-btn" aria-label="Scroll to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon" aria-hidden="true">RT</div>
+                        <span class="logo-text">Rocky Top Directory</span>
+                    </div>
+                    <p class="footer-desc">
+                        Supporting East Tennessee businesses and building stronger communities. Find local services, support your neighbors.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Directory</h3>
+                    <nav class="footer-links">
+                        <a href="#" class="footer-link">All Categories</a>
+                        <a href="#" class="footer-link">New Businesses</a>
+                        <a href="#" class="footer-link">Women-Owned</a>
+                        <a href="#" class="footer-link">Veteran-Owned</a>
+                    </nav>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">For Businesses</h3>
+                    <nav class="footer-links">
+                        <a href="#" class="footer-link">Add Your Business</a>
+                        <a href="#" class="footer-link">Claim Listing</a>
+                        <a href="#" class="footer-link">Advertising</a>
+                        <a href="#" class="footer-link">Partner With Us</a>
+                    </nav>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Support</h3>
+                    <nav class="footer-links">
+                        <a href="#" class="footer-link">Contact Us</a>
+                        <a href="#" class="footer-link">FAQ</a>
+                        <a href="#" class="footer-link">Privacy Policy</a>
+                        <a href="#" class="footer-link">Terms of Service</a>
+                    </nav>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Rocky Top Business Directory. Made with <i class="fa-solid fa-heart" aria-label="love"></i> in East Tennessee.</p>
+                <p>A community project supporting local business.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
